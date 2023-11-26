@@ -109,8 +109,8 @@ const list = async (params: IUserQueryParams) => {
 
   // Pagination
   const paginationRepo = userRepo;
-  const total = await paginationRepo.getMany();
-  const pagRes = ApiUtility.getPagination(total.length, params.limit, params.page);
+  const total = await paginationRepo.getCount();
+  const pagRes = ApiUtility.getPagination(total, params.limit, params.page);
 
   userRepo = userRepo.limit(params.limit).offset(ApiUtility.getOffset(params.limit, params.page));
   const users = await userRepo.getMany();
