@@ -23,7 +23,7 @@ export class CreateTransactionTable1701014752640 implements MigrationInterface {
             type: 'int'
           },
           {
-            name: 'typeId',
+            name: 'categoryId',
             type: 'int'
           },
           {
@@ -56,17 +56,17 @@ export class CreateTransactionTable1701014752640 implements MigrationInterface {
         new TableForeignKey({
           columnNames: ['userId'],
           referencedColumnNames: ['id'],
-          referencedTableName: 'users',
+          referencedTableName: 'user',
           onDelete: 'cascade'
         }),
         new TableForeignKey({
           columnNames: ['accountId'],
           referencedColumnNames: ['id'],
-          referencedTableName: 'user_accouts',
+          referencedTableName: 'user_accounts',
           onDelete: 'cascade'
         }),
         new TableForeignKey({
-          columnNames: ['typeId'],
+          columnNames: ['categoryId'],
           referencedColumnNames: ['id'],
           referencedTableName: 'categories',
           onDelete: 'cascade'
@@ -79,7 +79,7 @@ export class CreateTransactionTable1701014752640 implements MigrationInterface {
     const table = await queryRunner.getTable('transactions')
     const foreignKeys = table.foreignKeys.filter(
       fk => fk.columnNames.indexOf('userId') !== -1
-        || fk.columnNames.indexOf('typeId') !== -1
+        || fk.columnNames.indexOf('categoryId') !== -1
         || fk.columnNames.indexOf('accountId') !== -1
     )
 

@@ -1,3 +1,4 @@
+import { TransactionType } from "../enums/category";
 import {MigrationInterface, QueryRunner, Table} from "typeorm";
 
 export class CreateCategory1700896808996 implements MigrationInterface {
@@ -22,9 +23,10 @@ export class CreateCategory1700896808996 implements MigrationInterface {
                     },
                     {
                         name: 'type',
-                        type: 'varchar',
-                        length: '100',
-                        isNullable: false
+                        type: 'enum',
+                        enum: [TransactionType.INCOME, TransactionType.EXPENSE, TransactionType.TRANSFER],
+                        default: `"${TransactionType.EXPENSE}"`,
+                        isNullable: false,
                     },
                     {
                         name: 'createdAt',

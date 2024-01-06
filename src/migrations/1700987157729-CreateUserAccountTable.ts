@@ -5,7 +5,7 @@ export class CreateUserAccountTable1700987157729 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'user_accouts',
+        name: 'user_accounts',
         columns: [
           {
             name: 'id',
@@ -24,10 +24,6 @@ export class CreateUserAccountTable1700987157729 implements MigrationInterface {
             name: 'createdAt',
             type: 'datetime',
             default: 'CURRENT_TIMESTAMP',
-          },
-          {
-            name: 'typeId',
-            type: 'int'
           },
           {
             name: 'userId',
@@ -51,15 +47,9 @@ export class CreateUserAccountTable1700987157729 implements MigrationInterface {
       'user_accounts',
       [
         new TableForeignKey({
-          columnNames: ['typeId'],
-          referencedColumnNames: ['id'],
-          referencedTableName: 'categories',
-          onDelete: "cascade"
-        }),
-        new TableForeignKey({
           columnNames: ['userId'],
           referencedColumnNames: ['id'],
-          referencedTableName: 'users',
+          referencedTableName: 'user',
           onDelete: 'cascade'
         })
       ]

@@ -3,7 +3,7 @@ import { Column, Entity, PrimaryGeneratedColumn, Unique } from 'typeorm';
 // Entities
 import { BaseEntity } from '../base/base.entity';
 
-@Entity('catogries', { orderBy: { id: 'DESC' } })
+@Entity('categories', { orderBy: { id: 'DESC' } })
 export class Category extends BaseEntity {
 
   @PrimaryGeneratedColumn({ type: 'int' })
