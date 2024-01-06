@@ -1,13 +1,17 @@
-import { Column, Entity, PrimaryGeneratedColumn, Unique, OneToMany } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn, Unique } from 'typeorm';
 
 // Entities
 import { BaseEntity } from '../base/base.entity';
 
-@Entity('income_types', { orderBy: { id: 'DESC' } })
-export class IncomeType extends BaseEntity {
+@Entity('catogries', { orderBy: { id: 'DESC' } })
+export class Category extends BaseEntity {
 
   @PrimaryGeneratedColumn({ type: 'int' })
   id: number;
+
+  @Column({ length: 100, nullable: false })
+  @Unique(['name'])
+  name: string;
 
   @Column({ length: 100, nullable: false })
   @Unique(['type'])
