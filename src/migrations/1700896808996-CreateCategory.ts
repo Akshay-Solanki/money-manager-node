@@ -1,11 +1,12 @@
+import { TransactionType } from "../enums/category";
 import {MigrationInterface, QueryRunner, Table} from "typeorm";
 
-export class CreateIncomeType1700896808996 implements MigrationInterface {
+export class CreateCategory1700896808996 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(
             new Table({
-                name: 'income_types',
+                name: 'categories',
                 columns: [
                     {
                         name: 'id',
@@ -15,10 +16,17 @@ export class CreateIncomeType1700896808996 implements MigrationInterface {
                         generationStrategy: 'increment'
                     },
                     {
-                        name: 'type',
+                        name: 'name',
                         type: 'varchar',
                         length: '100',
                         isNullable: false
+                    },
+                    {
+                        name: 'type',
+                        type: 'enum',
+                        enum: [TransactionType.INCOME, TransactionType.EXPENSE, TransactionType.TRANSFER],
+                        default: `"${TransactionType.EXPENSE}"`,
+                        isNullable: false,
                     },
                     {
                         name: 'createdAt',
@@ -41,7 +49,7 @@ export class CreateIncomeType1700896808996 implements MigrationInterface {
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropTable('income_types');
+        await queryRunner.dropTable('categories');
     }
 
 }
